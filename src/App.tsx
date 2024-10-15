@@ -5,7 +5,7 @@ import SurveyForm from "./components/SurveyForm";
 function App() {
   return (
     <div className="">
-      <div className="w-[1300px] h-[700px] bg-gray-400 mx-auto mt-[50px]">
+      <div className="w-[716px] h-[700px] bg-gray-400 mx-auto mt-[50px]">
         <SurveyForm />
       </div>
       {/* <div className="w-24 h-24 mx-auto">

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { supabase } from "../supabase";
+import { createClient } from "@supabase/supabase-js";
 
 const SurveyForm = () => {
   const [satisCheckedValue, setSatisCheckedValue] = useState("");
   const [whatCheckedValue, setWhatCheckedValue] = useState("");
 
   const checkboxCss = "appearance-none h-6 w-6 border mx-2 border-gray-300 rounded-md checked:bg-blue-600 checked:border-transparent focus:outline-none";
+
+  const supabase = createClient('https://pildhzxxciaiubihlmpb.supabase.co', process.env.REACT_APP_SUPABASE_KEY as string);
   
 
   const handleSatisChecked = (e: React.ChangeEvent<HTMLInputElement>) => {

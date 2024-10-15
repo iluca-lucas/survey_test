@@ -34,6 +34,16 @@ const SurveyForm = () => {
   const insertData = async (e:React.FormEvent) => {
     e.preventDefault();
     const now = new Date().toLocaleString("en-US", { timeZone: "Asia/Seoul" });
+    if(satisCheckedValue === "") {
+      alert("Please select your experience.");
+      return;
+    } else if(satisCheckedValue === "yes" && whatCheckedValue === "") {
+      alert("Please select what you liked the most.");
+      return;
+    } else if(satisCheckedValue === "no" && whatCheckedValue !== "") {
+      setWhatCheckedValue("");
+      return;
+    }
     const { data, error } = await supabase
     .from('surveys2')
     .insert([

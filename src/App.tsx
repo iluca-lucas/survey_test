@@ -4,11 +4,11 @@ import SurveyForm from "./components/SurveyForm";
 
 function App() {
   return (
-    <div className="w-[414px] max-w-md:w-[414px] h-[700px] mx-auto">
-      <div className="w-[414px] max-w-md:w-[414px] bg-gray-400 mx-auto mt-[50px]">
+    <div className="w-[414px] max-w-md:w-[414px] h-screen mx-auto">
+      <div className="w-[414px] max-w-md:w-[414px] bg-gray-400 py-[60px] rounded-lg mx-auto mt-[50px]">
         <SurveyForm />
       </div>
-      <div className="w-24 h-24 mx-auto">
+      <div className="w-24 h-24 mx-auto top-0 left-1/2 transform -translate-x-1/2 fixed">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 100 100"

@@ -5,8 +5,22 @@ const SurveyForm = () => {
   const [satisCheckedValue, setSatisCheckedValue] = useState("");
   const [whatCheckedValue, setWhatCheckedValue] = useState("");
 
-  const checkboxCss =
-    "appearance-none h-6 w-6 border mx-2 border-gray-300 rounded-md checked:bg-blue-600 checked:border-transparent focus:outline-none";
+  // const checkboxCss =
+  //   "appearance-none border border-gray-400 rounded-md h-6 w-6 checked:bg-blue-500 focus:ring-2 focus:ring-blue-500 checked:border-blue-500 checked:text-white text-white";
+  //   const checkboxCss = `
+  //   appearance-none border border-gray-400 rounded-md h-6 w-6
+  //   checked:bg-blue-500 checked:border-blue-500 focus:ring-2
+  //   focus:ring-blue-500 relative
+  //   before:hidden checked:before:block
+  //   before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2
+  //   checked:before:content-['V'] checked:before:text-white checked:before:text-lg
+  // `;
+  const checkboxCss = `
+    appearance-none border border-gray-400 rounded-md h-6 w-6 
+    bg-no-repeat bg-center
+    checked:bg-[url('https://pildhzxxciaiubihlmpb.supabase.co/storage/v1/object/sign/images/checked.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvY2hlY2tlZC5wbmciLCJpYXQiOjE3Mjk0NzIyNDYsImV4cCI6MTc2MTAwODI0Nn0.VeTJbFAcYbUk-CN6e5HfHpz2MlZGmzTdKkoNzsApmv4&t=2024-10-21T00%3A56%3A57.495Z')] checked:bg-blue-500 checked:border-blue-500 focus:ring-2 
+    focus:ring-blue-500
+`;
 
   const supabase = createClient(
     "https://pildhzxxciaiubihlmpb.supabase.co",
@@ -68,7 +82,7 @@ const SurveyForm = () => {
       <h1 className="font-mono text-3xl p-0 w-[200px] mx-auto">Survey Form</h1>
       <div className="w-full mx-auto text-center mt-[40px]">
         <h4 className="text-xs">사용 경험은 만족스러우셨습니까?</h4>
-        <div className="mx-auto mt-4 justify-between">
+        {/* <div className="mx-auto mt-4 justify-between">
           <input
             type="checkbox"
             id="yes"
@@ -89,6 +103,36 @@ const SurveyForm = () => {
             onChange={handleSatisChecked}
           />
           <label htmlFor="no">아니오</label>
+        </div> */}
+        <div className="mx-auto mt-4 flex justify-between items-center">
+          <div className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              id="yes"
+              name="experience"
+              value="yes"
+              className={checkboxCss}
+              checked={satisCheckedValue === "yes"}
+              onChange={handleSatisChecked}
+            />
+            <label htmlFor="yes" className="ml-2">
+              예
+            </label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              id="no"
+              name="experience"
+              value="no"
+              className={checkboxCss}
+              checked={satisCheckedValue === "no"}
+              onChange={handleSatisChecked}
+            />
+            <label htmlFor="no" className="ml-2">
+              아니오
+            </label>
+          </div>
         </div>
       </div>
       {satisCheckedValue === "yes" && (

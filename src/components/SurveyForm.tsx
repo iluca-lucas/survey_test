@@ -4,6 +4,7 @@ import { createClient } from "@supabase/supabase-js";
 const SurveyForm = () => {
   const [satisCheckedValue, setSatisCheckedValue] = useState("");
   const [whatCheckedValue, setWhatCheckedValue] = useState("");
+  const [badCheckedValue, setBadCheckedValue] = useState("");
 
   // const checkboxCss =
   //   "appearance-none border border-gray-400 rounded-md h-6 w-6 checked:bg-blue-500 focus:ring-2 focus:ring-blue-500 checked:border-blue-500 checked:text-white text-white";
@@ -16,7 +17,7 @@ const SurveyForm = () => {
   //   checked:before:content-['V'] checked:before:text-white checked:before:text-lg
   // `;
   const checkboxCss = `
-    appearance-none border border-gray-400 rounded-md h-6 w-6 
+    appearance-none border border-inherit rounded-md h-6 w-6 
     bg-no-repeat bg-center
     checked:bg-[url('https://pildhzxxciaiubihlmpb.supabase.co/storage/v1/object/sign/images/checked.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvY2hlY2tlZC5wbmciLCJpYXQiOjE3Mjk0NzIyNDYsImV4cCI6MTc2MTAwODI0Nn0.VeTJbFAcYbUk-CN6e5HfHpz2MlZGmzTdKkoNzsApmv4&t=2024-10-21T00%3A56%3A57.495Z')] checked:bg-blue-500 checked:border-blue-500 focus:ring-2 
     focus:ring-blue-500
@@ -29,17 +30,24 @@ const SurveyForm = () => {
 
   const handleSatisChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSatisCheckedValue(e.target.value);
-    console.log(e.target.value);
+    if(e.target.value === "no"){
+      setWhatCheckedValue("");
+    } else if(e.target.value === "yes"){
+      setBadCheckedValue("");
+    }
   };
 
   const handleWhatChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
     setWhatCheckedValue(e.target.value);
-    console.log(e.target.value);
   };
+
+  const handleBadChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setBadCheckedValue(e.target.value);
+  };
+
 
   const fetchingData = async () => {
     let { data: surveys2, error } = await supabase.from("surveys2").select("*");
-    console.log(surveys2);
 
     if (error) {
       console.log(error);
@@ -62,10 +70,9 @@ const SurveyForm = () => {
     const { data, error } = await supabase
       .from("surveys2")
       .insert([
-        { yesorno: satisCheckedValue, bestthing: whatCheckedValue, time: now },
+        { yesorno: satisCheckedValue, bestthing: whatCheckedValue, badthing:badCheckedValue, time: now },
       ]);
     alert("Thank you for your response!");
-    console.log(data);
     window.location.reload();
 
     if (error) {
@@ -78,10 +85,10 @@ const SurveyForm = () => {
   });
 
   return (
-    <form onSubmit={insertData} className="text-center w-full p-10">
-      <h1 className="font-mono text-3xl p-0 w-[200px] mx-auto">Survey Form</h1>
-      <div className="w-full mx-auto text-center mt-[40px]">
-        <h4 className="text-xs">사용 경험은 만족스러우셨습니까?</h4>
+    <form onSubmit={insertData} className="text-center w-full p-10 font-jua">
+      <h2 className="text-2xl p-0 w-full mx-auto">테이블 사용경험 설문</h2>
+      <div className="w-2/3 mx-auto text-center mt-[40px]">
+        <h4 className="">사용 경험은 만족스러우셨습니까?</h4>
         {/* <div className="mx-auto mt-4 justify-between">
           <input
             type="checkbox"
@@ -138,42 +145,81 @@ const SurveyForm = () => {
       {satisCheckedValue === "yes" && (
         <div>
           <h4 className="mt-[40px]">어떤점이 가장 마음에 드셨습니까?</h4>
-          <input
-            type="checkbox"
-            id="table"
-            name="experience"
-            value="table"
-            className={checkboxCss}
-            checked={whatCheckedValue === "table"}
-            onChange={handleWhatChecked}
-          />
-          <label htmlFor="table">테이블기능</label>
-          <input
-            type="checkbox"
-            id="sterilization"
-            name="experience"
-            value="sterilization"
-            className={checkboxCss}
-            checked={whatCheckedValue === "sterilization"}
-            onChange={handleWhatChecked}
-          />
-          <label htmlFor="sterilization">살균기능</label>
-          <input
-            type="checkbox"
-            id="advertisement"
-            name="experience"
-            value="advertisement"
-            className={checkboxCss}
-            checked={whatCheckedValue === "advertisement"}
-            onChange={handleWhatChecked}
-          />
-          <label htmlFor="advertisement">광고기능</label>
+          <div className="mx-auto mt-4 flex justify-between items-center">
+            <input
+              type="checkbox"
+              id="table"
+              name="experience"
+              value="table"
+              className={checkboxCss}
+              checked={whatCheckedValue === "table"}
+              onChange={handleWhatChecked}
+            />
+            <label htmlFor="table">테이블기능</label>
+            <input
+              type="checkbox"
+              id="sterilization"
+              name="experience"
+              value="sterilization"
+              className={checkboxCss}
+              checked={whatCheckedValue === "sterilization"}
+              onChange={handleWhatChecked}
+            />
+            <label htmlFor="sterilization">살균기능</label>
+            <input
+              type="checkbox"
+              id="advertisement"
+              name="experience"
+              value="advertisement"
+              className={checkboxCss}
+              checked={whatCheckedValue === "advertisement"}
+              onChange={handleWhatChecked}
+            />
+            <label htmlFor="advertisement">광고기능</label>
+          </div>
+        </div>
+      )}
+      {satisCheckedValue === "no" && (
+        <div>
+          <h4 className="mt-[40px]">어떤점이 가장 마음에 들지 않았습니까?</h4>
+          <div className="mx-auto mt-4 flex justify-between items-center">
+            <input
+              type="checkbox"
+              id="table"
+              name="experience"
+              value="table"
+              className={checkboxCss}
+              checked={badCheckedValue === "table"}
+              onChange={handleBadChecked}
+            />
+            <label htmlFor="table">테이블기능</label>
+            <input
+              type="checkbox"
+              id="sterilization"
+              name="experience"
+              value="sterilization"
+              className={checkboxCss}
+              checked={badCheckedValue === "sterilization"}
+              onChange={handleBadChecked}
+            />
+            <label htmlFor="sterilization">살균기능</label>
+            <input
+              type="checkbox"
+              id="advertisement"
+              name="experience"
+              value="advertisement"
+              className={checkboxCss}
+              checked={badCheckedValue === "advertisement"}
+              onChange={handleBadChecked}
+            />
+            <label htmlFor="advertisement">광고기능</label>
+          </div>
         </div>
       )}
 
       <button
         type="submit"
-        className="mt-[50px] bg-sky-500 py-2 px-3 rounded-xl hover:bg-sky-900 hover:text-white"
+        className="mt-[50px] bg-sky-500 text-white py-2 px-3 rounded-xl hover:bg-sky-900 hover:scale-110 hover:text-white transition-all shadow-black shadow-lg"
       >
         submit
       </button>

@@ -85,7 +85,7 @@ const SurveyForm = () => {
   });
 
   return (
-    <form onSubmit={insertData} className="text-center w-full p-10 font-jua">
+    <form onSubmit={insertData} className="text-center w-full p-10 font-OMP">
       <h2 className="text-2xl p-0 w-full mx-auto">테이블 사용경험 설문</h2>
       <div className="w-2/3 mx-auto text-center mt-[40px]">
         <h4 className="">사용 경험은 만족스러우셨습니까?</h4>

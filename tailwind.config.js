@@ -10,6 +10,7 @@ module.exports = {
       },
       fontFamily: {
         'jua': ['Jua'],
+        'OMP': ['ONE Mobile POP'],
       },
     },
   },

@@ -58,10 +58,10 @@ const SurveyForm = () => {
     e.preventDefault();
     const now = new Date().toLocaleString("en-US", { timeZone: "Asia/Seoul" });
     if (satisCheckedValue === "") {
-      alert("Please select your experience.");
+      alert("만족 여부를 선택해주세요.");
       return;
     } else if (satisCheckedValue === "yes" && whatCheckedValue === "") {
-      alert("Please select what you liked the most.");
+      alert("어떤점이 가장 마음에 들었는지 선택해주세요.");
       return;
     } else if (satisCheckedValue === "no" && whatCheckedValue !== "") {
       setWhatCheckedValue("");
@@ -72,7 +72,7 @@ const SurveyForm = () => {
       .insert([
         { yesorno: satisCheckedValue, bestthing: whatCheckedValue, badthing:badCheckedValue, time: now },
       ]);
-    alert("Thank you for your response!");
+    alert("응답해주셔서 감사합니다");
     window.location.reload();
 
     if (error) {

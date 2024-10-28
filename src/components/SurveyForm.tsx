@@ -86,9 +86,9 @@ const SurveyForm = () => {
 
   return (
     <form onSubmit={insertData} className="text-center w-full p-10 font-OMP">
-      <h2 className="text-2xl p-0 w-full mx-auto">테이블 사용경험 설문</h2>
-      <div className="w-2/3 mx-auto text-center mt-[40px]">
-        <h4 className="">사용 경험은 만족스러우셨습니까?</h4>
+      <h2 className="text-4xl p-0 w-full mx-auto">테이블 사용경험 설문</h2>
+      <div className="w-2/3 mx-auto text-center mt-[140px]">
+        <h4 className="text-2xl">사용 경험은 만족스러우셨습니까?</h4>
         {/* <div className="mx-auto mt-4 justify-between">
           <input
             type="checkbox"
@@ -111,7 +111,7 @@ const SurveyForm = () => {
           />
           <label htmlFor="no">아니오</label>
         </div> */}
-        <div className="mx-auto mt-4 flex justify-between items-center">
+        <div className="mx-auto w-1/3 mt-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <input
               type="checkbox"
@@ -144,75 +144,87 @@ const SurveyForm = () => {
       </div>
       {satisCheckedValue === "yes" && (
         <div>
-          <h4 className="mt-[40px]">어떤점이 가장 마음에 드셨습니까?</h4>
-          <div className="mx-auto mt-4 flex justify-between items-center">
-            <input
-              type="checkbox"
-              id="table"
-              name="experience"
-              value="table"
-              className={checkboxCss}
-              checked={whatCheckedValue === "table"}
-              onChange={handleWhatChecked}
-            />
-            <label htmlFor="table">테이블기능</label>
-            <input
-              type="checkbox"
-              id="sterilization"
-              name="experience"
-              value="sterilization"
-              className={checkboxCss}
-              checked={whatCheckedValue === "sterilization"}
-              onChange={handleWhatChecked}
-            />
-            <label htmlFor="sterilization">살균기능</label>
-            <input
-              type="checkbox"
-              id="advertisement"
-              name="experience"
-              value="advertisement"
-              className={checkboxCss}
-              checked={whatCheckedValue === "advertisement"}
-              onChange={handleWhatChecked}
-            />
-            <label htmlFor="advertisement">광고기능</label>
+          <h4 className="mt-[100px] mb-[50px] text-2xl">어떤점이 가장 마음에 드셨습니까?</h4>
+          <div className="mx-auto w-1/2 mt-4 flex justify-between items-center">
+            <div className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="table"
+                name="experience"
+                value="table"
+                className={checkboxCss}
+                checked={whatCheckedValue === "table"}
+                onChange={handleWhatChecked}
+              />
+              <label htmlFor="table">테이블기능</label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="sterilization"
+                name="experience"
+                value="sterilization"
+                className={checkboxCss}
+                checked={whatCheckedValue === "sterilization"}
+                onChange={handleWhatChecked}
+              />
+              <label htmlFor="sterilization">살균기능</label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="advertisement"
+                name="experience"
+                value="advertisement"
+                className={checkboxCss}
+                checked={whatCheckedValue === "advertisement"}
+                onChange={handleWhatChecked}
+              />
+              <label htmlFor="advertisement">광고기능</label>
+            </div>
           </div>
         </div>
       )}
       {satisCheckedValue === "no" && (
         <div>
-          <h4 className="mt-[40px]">어떤점이 가장 마음에 들지 않았습니까?</h4>
-          <div className="mx-auto mt-4 flex justify-between items-center">
-            <input
-              type="checkbox"
-              id="table"
-              name="experience"
-              value="table"
-              className={checkboxCss}
-              checked={badCheckedValue === "table"}
-              onChange={handleBadChecked}
-            />
-            <label htmlFor="table">테이블기능</label>
-            <input
-              type="checkbox"
-              id="sterilization"
-              name="experience"
-              value="sterilization"
-              className={checkboxCss}
-              checked={badCheckedValue === "sterilization"}
-              onChange={handleBadChecked}
-            />
-            <label htmlFor="sterilization">살균기능</label>
-            <input
-              type="checkbox"
-              id="advertisement"
-              name="experience"
-              value="advertisement"
-              className={checkboxCss}
-              checked={badCheckedValue === "advertisement"}
-              onChange={handleBadChecked}
-            />
-            <label htmlFor="advertisement">광고기능</label>
+          <h4 className="mt-[100px] mb-[50px] text-2xl">어떤점이 가장 마음에 들지 않았습니까?</h4>
+          <div className="mx-auto w-1/2 mt-4 flex justify-between items-center">
+            <div className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="table"
+                name="experience"
+                value="table"
+                className={checkboxCss}
+                checked={badCheckedValue === "table"}
+                onChange={handleBadChecked}
+              />
+              <label htmlFor="table">테이블기능</label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="sterilization"
+                name="experience"
+                value="sterilization"
+                className={checkboxCss}
+                checked={badCheckedValue === "sterilization"}
+                onChange={handleBadChecked}
+              />
+              <label htmlFor="sterilization">살균기능</label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="advertisement"
+                name="experience"
+                value="advertisement"
+                className={checkboxCss}
+                checked={badCheckedValue === "advertisement"}
+                onChange={handleBadChecked}
+              />
+              <label htmlFor="advertisement">광고기능</label>
+            </div>
           </div>
         </div>
       )}
@@ -221,7 +233,7 @@ const SurveyForm = () => {
         type="submit"
         className="mt-[50px] bg-sky-500 text-white py-2 px-3 rounded-xl hover:bg-sky-900 hover:scale-110 hover:text-white transition-all shadow-black shadow-lg"
       >
-        submit
+        제출하기
       </button>
     </form>
   );
